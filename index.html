@@ -881,25 +881,49 @@
       // Update SEO meta tags
       updateSEO(lang);
       
-      // Save to localStorage
+      // Save to localStorage (only when user manually switches)
       localStorage.setItem('preferred-language', lang);
     }
 
     // Initialize language from localStorage or browser preference
     function initLanguage() {
+      // Check if user has manually selected a language
       const savedLang = localStorage.getItem('preferred-language');
-      const browserLang = navigator.language.split('-')[0];
-      const defaultLang = savedLang || (browserLang === 'ru' ? 'ru' : 'en');
-      switchLanguage(defaultLang);
+      
+      if (savedLang) {
+        // User has manually selected - use saved preference
+        switchLanguage(savedLang);
+      } else {
+        // First visit - detect language from browser
+        const browserLang = navigator.language || navigator.userLanguage || navigator.languages?.[0] || 'en';
+        const detectedLang = browserLang.toLowerCase().startsWith('ru') ? 'ru' : 'en';
+        
+        // Show detected language but don't save to localStorage yet
+        // (will be saved only when user manually switches)
+        langButtons.forEach(b => b.classList.remove('active'));
+        const activeBtn = document.querySelector(`.lang-btn[data-lang="${detectedLang}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
+        
+        langContents.forEach(content => {
+          content.classList.remove('active');
+          if (content.dataset.lang === detectedLang) {
+            content.classList.add('active');
+          }
+        });
+        
+        document.documentElement.lang = detectedLang;
+        updateSEO(detectedLang);
+      }
     }
 
     // Initialize on page load
     initLanguage();
 
-    // Add click handlers
+    // Add click handlers - save to localStorage when user manually switches
     langButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const lang = btn.dataset.lang;
+        // This will save to localStorage
         switchLanguage(lang);
       });
     });
