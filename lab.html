@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShonTech Lab: Мозг и возраст</title>
+  <meta name="description" content="Годовая программа ShonTech Lab по измеримому улучшению работы мозга и тела после 50 лет. Исследование с полной аналитикой и референтной группой 60+." />
+  <link rel="icon" type="image/png" href="logosho.png">
+  <link rel="apple-touch-icon" href="logosho.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-background-primary: #FFFFFF;
+      --color-text-primary: #111111;
+      --color-text-muted: #555555;
+      --color-accent-primary: #1F4FFF;
+      --color-border-subtle: #E5E5E5;
+      --radius-card: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background-color: var(--color-background-primary);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--color-accent-primary);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+    a:hover { opacity: 0.7; text-decoration: underline; }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header.topbar {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--color-border-subtle);
+      margin-bottom: 8px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-circle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-circle img { width:100%; height:100%; object-fit:cover;}
+
+    .topbar-title { font-size: 0.9rem; font-weight: 600; }
+    .subdued { font-size: 0.85rem; color: var(--color-text-muted); }
+
+    h1,h2,h3 { color: var(--color-text-primary); }
+    h1 { font-size: 2.4rem; font-weight: 700; line-height: 1.15; margin-bottom: 16px; }
+    h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 12px; }
+    h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    p  { font-size: 1rem; color: var(--color-text-muted); margin-bottom: 10px; }
+
+    section { padding: 64px 0; }
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+      margin-bottom: 6px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      padding-top: 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .hero-kicker {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-accent-primary);
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle { margin-bottom: 16px; }
+    .hero-key { margin-bottom: 20px; }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--color-border-subtle);
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+    .pill-strong { border-color: var(--color-accent-primary); color: var(--color-accent-primary); }
+
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .stat-card { min-width: 90px; flex: 1 1 100px; }
+    .stat-number { font-size: 1.3rem; font-weight: 700; }
+    .stat-label { font-size: 0.8rem; color: var(--color-text-muted); }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 12px 20px;
+      border-radius:999px;
+      font-size:0.95rem;
+      font-weight:600;
+      border:1px solid transparent;
+      cursor:pointer;
+      white-space:nowrap;
+      transition:background 0.2s ease, box-shadow 0.1s ease, transform 0.1s ease;
+    }
+    .btn-primary {
+      background: var(--color-accent-primary);
+      color:#fff;
+      box-shadow:0 8px 20px rgba(31,79,255,0.25);
+    }
+    .btn-primary:hover {
+      text-decoration:none;
+      transform:translateY(-1px);
+      box-shadow:0 10px 24px rgba(31,79,255,0.3);
+    }
+    .btn-secondary {
+      background:#F7F7F7;
+      color:var(--color-text-primary);
+      border-color:var(--color-border-subtle);
+    }
+    .btn-secondary:hover { text-decoration:none; background:#EFEFEF; }
+
+    .hero-side-card {
+      border-radius: var(--radius-card);
+      border: 1px solid var(--color-border-subtle);
+      padding: 18px 18px 16px;
+    }
+    .badge {
+      display:inline-flex;
+      align-items:center;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid var(--color-border-subtle);
+      font-size:0.75rem;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      color:var(--color-text-muted);
+      margin-bottom:8px;
+    }
+    .badge-accent { border-color:var(--color-accent-primary); color:var(--color-accent-primary); }
+
+    .hero-founder {
+      display:flex; align-items:center; gap:10px; margin-top:10px;
+    }
+    .founder-avatar {
+      width:40px; height:40px; border-radius:50%; overflow:hidden; background:#EEE; flex-shrink:0;
+    }
+    .founder-avatar img { width:100%; height:100%; object-fit:cover; }
+
+    /* GENERIC LAYOUTS */
+    .grid-2 {
+      display:grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap:32px;
+      align-items:flex-start;
+    }
+
+    .card {
+      border-radius: var(--radius-card);
+      border:1px solid var(--color-border-subtle);
+      padding:18px 18px 16px;
+      background:#FFF;
+    }
+    .card-muted { background:#FAFAFA; }
+
+    ul { list-style:none; padding-left:0; margin:0; }
+    li { font-size:0.95rem; color:var(--color-text-muted); margin-bottom:8px; }
+    .list-dot li { position:relative; padding-left:16px; }
+    .list-dot li::before {
+      content:""; position:absolute; left:6px; top:10px;
+      width:4px; height:4px; border-radius:50%; background:var(--color-text-muted);
+    }
+
+    .section-bg { background:#FAFAFA; }
+    .center { text-align:center; }
+
+    .mt-8 { margin-top:8px; }
+    .mt-16 { margin-top:16px; }
+    .mt-24 { margin-top:24px; }
+
+    @media (max-width:880px) {
+      .hero-grid, .grid-2 { grid-template-columns:1fr; }
+      .hero { padding-top:40px; }
+    }
+    @media (max-width:600px) {
+      .container { padding:0 16px; }
+      h1 { font-size:2rem; }
+      h2 { font-size:1.3rem; }
+      section { padding:48px 0; }
+      .hero-actions { flex-direction:column; }
+      .btn-primary, .btn-secondary { width:100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="topbar-left">
+          <div class="logo-circle">
+            <img src="logosho.png" alt="ShonTech">
+          </div>
+          <div>
+            <div class="topbar-title">ShonTech Lab: Мозг и возраст</div>
+            <div class="subdued">Годовая программа активного долголетия 50+</div>
+          </div>
+        </div>
+        <div>
+          <a href="/" class="subdued">← На главную shontech.ru</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ЭКРАН 1. HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-kicker">Публичный эксперимент о мозге и возрасте</div>
+          <h1>За год измеримо улучшить работу мозга и тела после 50.</h1>
+          <p class="hero-subtitle">
+            Годовая программа активного долголетия с медицинским сопровождением, цифровой аналитикой и референтной группой спортсменов 60+.
+          </p>
+          <p class="hero-key">
+            ShonTech Lab — исследование, которое показывает, чего реально можно добиться после 50, если работать с собой системно.
+          </p>
+
+          <div class="hero-meta">
+            <span class="pill pill-strong">Первая когорта · 100 участников</span>
+            <span class="pill">Участие в пилоте — бесплатно</span>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-number">365</div>
+              <div class="stat-label">дней эксперимента</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">метрик мозга и тела</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">60+</div>
+              <div class="stat-label">референтная команда спортсменов</div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#application" class="btn-primary">Хочу в первую когорту</a>
+            <a href="#media" class="btn-secondary">Следить за экспериментом</a>
+          </div>
+          <p class="subdued mt-8">Отбор по анкете. Формат — исследовательская программа с публичной аналитикой.</p>
+        </div>
+
+        <aside class="hero-side-card">
+          <span class="badge badge-accent">Набор открыт</span>
+          <h3>Пилот 2025</h3>
+          <p class="subdued">
+            Мы формируем первую когорту участников 50–70 лет, готовых год жить в эксперименте: тренироваться, проходить замеры и честно фиксировать изменения.
+          </p>
+          <div class="hero-founder">
+            <div class="founder-avatar">
+              <img src="photo.jpg" alt="Денис Шонов">
+            </div>
+            <div class="subdued">
+              Куратор — <strong>Денис Шонов</strong>, AgeTech-предприниматель и автор медиа «Шонов говорит».
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 2. ПРОБЛЕМА / ПОЧЕМУ СЕЙЧАС -->
+  <section id="problem" class="section-bg">
+    <div class="container">
+      <div class="section-label">Зачем это нужно</div>
+      <h2>После 50 многое меняется. Но сценарий можно переписать.</h2>
+      <div class="grid-2 mt-16">
+        <div>
+          <p>
+            К 50–55 годам почти каждый замечает: память проседает, энергии меньше, тело медленнее восстанавливается. Общество предлагает «сбавить обороты». Мы предлагаем другой ответ.
+          </p>
+          <ul class="list-dot mt-8">
+            <li><strong>Мозг.</strong> Становится сложнее учиться новому и держать фокус.</li>
+            <li><strong>Тело.</strong> Мышцы и выносливость уходят, если их не защищать системно.</li>
+            <li><strong>Психика.</strong> Появляется ощущение «я уже не тот», и оно само себя усиливает.</li>
+          </ul>
+        </div>
+        <div class="card-muted card">
+          <h3>Что мы хотим доказать</h3>
+          <ul class="list-dot mt-8">
+            <li>что после 50 можно не только «не деградировать», но и заметно улучшить ключевые показатели;</li>
+            <li>что комбинация мозга, тела и психики работает сильнее, чем отдельные «фитнес-решения»;</li>
+            <li>что у возраста 50+ может быть новый образ — активный, живой, востребованный.</li>
+          </ul>
+          <p class="subdued mt-8">ShonTech Lab — это концепт будущей системы активного долголетия. Пилот 2025 года показывает, как она может работать.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 3. КОНЦЕПЦИЯ ПРОГРАММЫ -->
+  <section id="program">
+    <div class="container">
+      <div class="section-label">Как устроен эксперимент</div>
+      <h2>Годовой протокол: мозг, тело, психика, данные</h2>
+      <p class="mt-8">
+        Подробный протокол мы будем дорабатывать совместно с медицинскими и спортивными партнёрами. На концептуальном уровне он опирается на четыре блока.
+      </p>
+
+      <div class="grid-2 mt-16">
+        <div class="card">
+          <h3>1. Мозг</h3>
+          <ul class="list-dot mt-8">
+            <li>Когнитивные упражнения и задачи на внимание, память, скорость.</li>
+            <li>Контроль динамики через регулярные тесты и субъективные опросники.</li>
+            <li>Гипотеза: за год можно ощутимо ускорить «мысленную скорость» и ясность.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>2. Тело</h3>
+          <ul class="list-dot mt-8">
+            <li>Движение и силовые нагрузки, адаптированные под возраст и уровень.</li>
+            <li>Фокус на выносливости, силе и восстановлении, а не на рекордах.</li>
+            <li>Гипотеза: через 12 месяцев участник чувствует себя сильнее, чем в 45.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-2 mt-16">
+        <div class="card">
+          <h3>3. Психика</h3>
+          <ul class="list-dot mt-8">
+            <li>Работа с установками «мне поздно» и «я уже не тот».</li>
+            <li>Групповая поддержка и практики психогигиены.</li>
+            <li>Цель: не только новые привычки, но и новый образ себя в этом возрасте.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>4. Данные и референтная группа 60+</h3>
+          <ul class="list-dot mt-8">
+            <li>Измерения ключевых метрик мозга и тела на старте, в середине и в финале.</li>
+            <li>Сравнение с «средними» значениями для возраста и с командой спортсменов 60+ как живой верхней планкой.</li>
+            <li>Формат: личный дашборд участника + общая аналитика когорты.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="subdued mt-16">
+        Весь массив данных пилота станет основой для дальнейшей разработки продукта: от персональных программ до корпоративных решений.
+      </p>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 4. ПУБЛИЧНОСТЬ И МЕДИА -->
+  <section id="media" class="section-bg">
+    <div class="container">
+      <div class="section-label">Публичный формат</div>
+      <h2>Это не закрытая программа — это открытая история</h2>
+      <div class="grid-2 mt-16">
+        <div>
+          <p>
+            Важно не только провести эксперимент, но и показать его. Поэтому вокруг ShonTech Lab планируются медиа-форматы, которые будут жить отдельно от самой программы.
+          </p>
+          <ul class="list-dot mt-8">
+            <li>дневники части участников в Telegram;</li>
+            <li>ежемесячные визуальные отчёты по ключевым метрикам когорты;</li>
+            <li>интервью и разборы с врачами, тренерами и спортсменами 60+.</li>
+          </ul>
+        </div>
+        <div class="card-muted card">
+          <h3>Где следить</h3>
+          <p>Первой точкой входа будет Telegram-канал «Шонов говорит» и отдельные спецвыпуски о Lab.</p>
+          <a href="https://t.me/edtechhacker" target="_blank" class="btn-secondary mt-16">Подписаться и следить за запуском</a>
+          <p class="subdued mt-8">Дальше появятся отдельные площадки: страница проекта, рассылка, возможно — подкаст и серия видео.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 5. КАК ПОПАСТЬ -->
+  <section id="application">
+    <div class="container">
+      <div class="section-label">Набор в пилот</div>
+      <h2>Первая когорта ShonTech Lab</h2>
+      <div class="grid-2 mt-16">
+        <div>
+          <p>Сейчас мы собираем пул людей, с которыми можем честно провести годовой эксперимент.</p>
+          <ul class="list-dot mt-8">
+            <li>Возраст: ориентир 50–70 лет.</li>
+            <li>Готовность выделять время на тренировки, замеры и рефлексию.</li>
+            <li>Открытость к формату «частично публичного» участия (можно под псевдонимом).</li>
+          </ul>
+        </div>
+        <div class="card-muted card">
+          <h3>Что дальше</h3>
+          <ul class="list-dot mt-8">
+            <li>Вы заполняете концептуальную анкету — кто вы, что хотите поменять.</li>
+            <li>Мы собираем интересантов и дорабатываем протокол вместе с экспертами.</li>
+            <li>После этого формируем первую когорту и согласуем даты старта.</li>
+          </ul>
+          <a href="https://example.com" class="btn-primary mt-16">Оставить интерес к участию</a>
+          <p class="subdued mt-8">Здесь будет ссылка на форму (Typeform/Notion). Пока можно использовать заглушку.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
