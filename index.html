@@ -27,9 +27,8 @@
   <link rel="icon" type="image/png" href="logosho.png">
   <link rel="apple-touch-icon" href="logosho.png">
   
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Self-hosted Inter font (no external requests) -->
+  <link rel="stylesheet" href="fonts.css">
   <style>
     :root {
       --color-background-primary: #FFFFFF;
@@ -235,127 +234,65 @@
       border-radius: 3px;
     }
 
-    /* Goodreads Widget */
-    #gr_custom_widget_ {
+    /* Books */
+    .books-list {
       margin-top: 32px;
     }
 
-    .gr_custom_container_ {
-      border: 1px solid var(--color-border-subtle);
-      border-radius: 0;
-      padding: 24px;
-      background-color: var(--color-background-primary);
-      color: var(--color-text-primary);
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .gr_custom_header_ {
-      border-bottom: 1px solid var(--color-border-subtle);
-      width: 100%;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      text-align: left;
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .gr_custom_header_ a {
-      color: var(--color-text-primary);
-      text-decoration: none;
-    }
-
-    .gr_custom_header_ a:hover {
-      text-decoration: underline;
-    }
-
-    .gr_custom_each_container_ {
-      width: 100%;
-      clear: both;
-      margin-bottom: 20px;
-      overflow: auto;
-      padding-bottom: 16px;
+    .book-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
       border-bottom: 1px solid var(--color-border-subtle);
     }
 
-    .gr_custom_each_container_:last-child {
+    .book-item:last-of-type {
       border-bottom: none;
+      padding-bottom: 0;
     }
 
-    .gr_custom_book_container_ {
-      overflow: hidden;
-      height: 60px;
-      float: left;
-      margin-right: 12px;
-      width: 39px;
-    }
-
-    .gr_custom_book_container_ img {
-      width: 100%;
+    .book-item img {
+      width: 60px;
       height: auto;
+      flex-shrink: 0;
     }
 
-    .gr_custom_title_ {
+    .book-item-title {
       font-size: 1rem;
       font-weight: 600;
       margin-bottom: 4px;
       color: var(--color-text-primary);
     }
 
-    .gr_custom_title_ a {
+    .book-item-title a {
       color: var(--color-text-primary);
       text-decoration: none;
     }
 
-    .gr_custom_title_ a:hover {
-      text-decoration: underline;
-    }
-
-    .gr_custom_author_ {
+    .book-item-author {
       font-size: 0.875rem;
       color: var(--color-text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
-    .gr_custom_author_ a {
-      color: var(--color-text-muted);
-      text-decoration: none;
+    .book-stars {
+      font-size: 0.875rem;
+      color: #FF9F1C;
+      letter-spacing: 2px;
     }
 
-    .gr_custom_author_ a:hover {
-      text-decoration: underline;
-    }
-
-    .gr_custom_review_ {
+    .book-item-review {
       font-size: 0.875rem;
       color: var(--color-text-muted);
       margin-top: 8px;
       line-height: 1.5;
     }
 
-    .gr_custom_rating_ {
-      float: right;
-      margin-left: 12px;
-    }
-
-    .gr_custom_rating_ img {
-      width: 16px;
-      height: 16px;
-    }
-
-    .gr_custom_tags_ {
-      font-size: 0.875rem;
-      color: var(--color-text-muted);
-    }
-
-    #gr_custom_widget_ center {
+    .books-footer {
       margin-top: 24px;
-      padding-top: 16px;
-      border-top: 1px solid var(--color-border-subtle);
-    }
-
-    #gr_custom_widget_ center img {
-      opacity: 0.6;
+      font-size: 0.875rem;
     }
 
     /* Links */
@@ -628,7 +565,7 @@
             </svg>
             Apple Podcasts
           </a>
-          <a href="http://music.yandex.ru/album/39109988" target="_blank" class="podcast-link-btn yandex-music-link">
+          <a href="https://music.yandex.ru/album/39109988" target="_blank" class="podcast-link-btn yandex-music-link">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.568 8.16c-.169 0-.315.06-.442.18l-1.428 1.4-1.428-1.4c-.127-.12-.273-.18-.442-.18-.338 0-.6.262-.6.6 0 .169.06.315.18.442l1.4 1.428-1.4 1.428c-.12.127-.18.273-.18.442 0 .338.262.6.6.6.169 0 .315-.06.442-.18l1.428-1.4 1.428 1.4c.127.12.273.18.442.18.338 0 .6-.262.6-.6 0-.169-.06-.315-.18-.442l-1.4-1.428 1.4-1.428c.12-.127.18-.273.18-.442 0-.338-.262-.6-.6-.6z"/>
             </svg>
@@ -658,7 +595,7 @@
             </svg>
             Apple Podcasts
           </a>
-          <a href="http://music.yandex.ru/album/39109988" target="_blank" class="podcast-link-btn yandex-music-link">
+          <a href="https://music.yandex.ru/album/39109988" target="_blank" class="podcast-link-btn yandex-music-link">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.568 8.16c-.169 0-.315.06-.442.18l-1.428 1.4-1.428-1.4c-.127-.12-.273-.18-.442-.18-.338 0-.6.262-.6.6 0 .169.06.315.18.442l1.4 1.428-1.4 1.428c-.12.127-.18.273-.18.442 0 .338.262.6.6.6.169 0 .315-.06.442-.18l1.428-1.4 1.428 1.4c.127.12.273.18.442.18.338 0 .6-.262.6-.6 0-.169-.06-.315-.18-.442l-1.4-1.428 1.4-1.428c.12-.127.18-.273.18-.442 0-.338-.262-.6-.6-.6z"/>
             </svg>
@@ -681,130 +618,66 @@
       <div class="lang-content active" data-lang="ru">
         <h2>Книги</h2>
         <p>Книги, которые я читаю и рецензирую.</p>
-        <div id="gr_custom_widget_">
-          <div class="gr_custom_container_">
-            <h2 class="gr_custom_header_">
-              <a style="text-decoration: none;" rel="nofollow" href="https://www.goodreads.com/review/list/131848577-denis-shonov?shelf=read&amp;utm_medium=api&amp;utm_source=custom_widget">Книги Дениса</a>
-            </h2>
-            <div class="gr_custom_each_container_">
-              <div class="gr_custom_book_container_">
-                <a title="Good to Great: Why Some Companies Make the Leap... and Others Don't" rel="nofollow" href="https://www.goodreads.com/review/show/3887552486?utm_medium=api&amp;utm_source=custom_widget"><img alt="Good to Great: Why Some Companies Make the Leap... and Others Don't" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1546097703l/76865._SY75_.jpg" /></a>
-              </div>
-              <div class="gr_custom_rating_">
-                <span class=" staticStars notranslate" title="it was amazing"><img alt="it was amazing" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /></span>
-              </div>
-              <div class="gr_custom_title_">
-                <a rel="nofollow" href="https://www.goodreads.com/review/show/3887552486?utm_medium=api&amp;utm_source=custom_widget">Good to Great: Why Some Companies Make the Leap... and Others Don't</a>
-              </div>
-              <div class="gr_custom_author_">
-                by <a rel="nofollow" href="https://www.goodreads.com/author/show/2826.Jim_Collins">Jim Collins</a>
-              </div>
+        <div class="books-list">
+          <div class="book-item">
+            <img src="books/good-to-great.jpg" alt="Обложка: Good to Great">
+            <div>
+              <div class="book-item-title"><a rel="nofollow" href="https://www.goodreads.com/review/show/3887552486" target="_blank">Good to Great: Why Some Companies Make the Leap... and Others Don't</a></div>
+              <div class="book-item-author">Jim Collins</div>
+              <div class="book-stars">★★★★★</div>
             </div>
-            <div class="gr_custom_each_container_">
-              <div class="gr_custom_book_container_">
-                <a title="The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life" rel="nofollow" href="https://www.goodreads.com/review/show/3887550935?utm_medium=api&amp;utm_source=custom_widget"><img alt="The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1465761302l/28257707._SX50_.jpg" /></a>
-              </div>
-              <div class="gr_custom_rating_">
-                <span class=" staticStars notranslate" title="it was amazing"><img alt="it was amazing" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /></span>
-              </div>
-              <div class="gr_custom_title_">
-                <a rel="nofollow" href="https://www.goodreads.com/review/show/3887550935?utm_medium=api&amp;utm_source=custom_widget">The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life</a>
-              </div>
-              <div class="gr_custom_author_">
-                by <a rel="nofollow" href="https://www.goodreads.com/author/show/8529755.Mark_Manson">Mark Manson</a>
-              </div>
-              <div class="gr_custom_review_">
-                The main idea of the book is that life consists of endless issues. Hence there is no point in wishing the life of Elone Musk or someone else, since they have endless issues too. On the other hand, the level of their problems is higher th...
-              </div>
-            </div>
-            <div class="gr_custom_each_container_">
-              <div class="gr_custom_book_container_">
-                <a title="The 7 Habits of Highly Effective People: Powerful Lessons in Personal Change" rel="nofollow" href="https://www.goodreads.com/review/show/3887550657?utm_medium=api&amp;utm_source=custom_widget"><img alt="The 7 Habits of Highly Effective People: Powerful Lessons in Personal Change" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1421842784l/36072._SY75_.jpg" /></a>
-              </div>
-              <div class="gr_custom_rating_">
-                <span class=" staticStars notranslate" title="really liked it"><img alt="really liked it" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_inactive.png" /></span>
-              </div>
-              <div class="gr_custom_title_">
-                <a rel="nofollow" href="https://www.goodreads.com/review/show/3887550657?utm_medium=api&amp;utm_source=custom_widget">The 7 Habits of Highly Effective People: Powerful Lessons in Personal Change</a>
-              </div>
-              <div class="gr_custom_author_">
-                by <a rel="nofollow" href="https://www.goodreads.com/author/show/1538.Stephen_R_Covey">Stephen R. Covey</a>
-              </div>
-            </div>
-            <br style="clear: both"/>
-            <center>
-              <a rel="nofollow" href="https://www.goodreads.com/"><img alt="goodreads.com" style="border:0" src="https://s.gr-assets.com/images/widget/widget_logo.gif" /></a>
-            </center>
-            <noscript>
-              Share <a rel="nofollow" href="https://www.goodreads.com/">book reviews</a> and ratings with Denis, and even join a <a rel="nofollow" href="https://www.goodreads.com/group">book club</a> on Goodreads.
-            </noscript>
           </div>
+          <div class="book-item">
+            <img src="books/subtle-art.jpg" alt="Обложка: The Subtle Art of Not Giving a F*ck">
+            <div>
+              <div class="book-item-title"><a rel="nofollow" href="https://www.goodreads.com/review/show/3887550935" target="_blank">The Subtle Art of Not Giving a F*ck</a></div>
+              <div class="book-item-author">Mark Manson</div>
+              <div class="book-stars">★★★★★</div>
+              <div class="book-item-review">Главная идея книги: жизнь состоит из бесконечных проблем, поэтому нет смысла мечтать о жизни Илона Маска или кого-то ещё — у них тоже бесконечные проблемы, просто уровень выше.</div>
+            </div>
+          </div>
+          <div class="book-item">
+            <img src="books/7-habits.jpg" alt="Обложка: The 7 Habits of Highly Effective People">
+            <div>
+              <div class="book-item-title"><a rel="nofollow" href="https://www.goodreads.com/review/show/3887550657" target="_blank">The 7 Habits of Highly Effective People</a></div>
+              <div class="book-item-author">Stephen R. Covey</div>
+              <div class="book-stars">★★★★☆</div>
+            </div>
+          </div>
+          <p class="books-footer">Больше книг и рецензий — в моём <a rel="nofollow" href="https://www.goodreads.com/review/list/131848577-denis-shonov?shelf=read" target="_blank">профиле на Goodreads</a>.</p>
         </div>
-        <script src="https://www.goodreads.com/review/custom_widget/131848577.Denis's%20bookshelf:%20read?cover_position=&cover_size=&num_books=5&order=&shelf=&sort=&widget_bg_transparent=" type="text/javascript" charset="utf-8"></script>
       </div>
       <div class="lang-content" data-lang="en">
         <h2>Books</h2>
         <p>Books I'm reading and reviewing.</p>
-        <div id="gr_custom_widget_">
-          <div class="gr_custom_container_">
-            <h2 class="gr_custom_header_">
-              <a style="text-decoration: none;" rel="nofollow" href="https://www.goodreads.com/review/list/131848577-denis-shonov?shelf=read&amp;utm_medium=api&amp;utm_source=custom_widget">Denis's books</a>
-            </h2>
-            <div class="gr_custom_each_container_">
-              <div class="gr_custom_book_container_">
-                <a title="Good to Great: Why Some Companies Make the Leap... and Others Don't" rel="nofollow" href="https://www.goodreads.com/review/show/3887552486?utm_medium=api&amp;utm_source=custom_widget"><img alt="Good to Great: Why Some Companies Make the Leap... and Others Don't" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1546097703l/76865._SY75_.jpg" /></a>
-              </div>
-              <div class="gr_custom_rating_">
-                <span class=" staticStars notranslate" title="it was amazing"><img alt="it was amazing" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /></span>
-              </div>
-              <div class="gr_custom_title_">
-                <a rel="nofollow" href="https://www.goodreads.com/review/show/3887552486?utm_medium=api&amp;utm_source=custom_widget">Good to Great: Why Some Companies Make the Leap... and Others Don't</a>
-              </div>
-              <div class="gr_custom_author_">
-                by <a rel="nofollow" href="https://www.goodreads.com/author/show/2826.Jim_Collins">Jim Collins</a>
-              </div>
+        <div class="books-list">
+          <div class="book-item">
+            <img src="books/good-to-great.jpg" alt="Cover: Good to Great">
+            <div>
+              <div class="book-item-title"><a rel="nofollow" href="https://www.goodreads.com/review/show/3887552486" target="_blank">Good to Great: Why Some Companies Make the Leap... and Others Don't</a></div>
+              <div class="book-item-author">Jim Collins</div>
+              <div class="book-stars">★★★★★</div>
             </div>
-            <div class="gr_custom_each_container_">
-              <div class="gr_custom_book_container_">
-                <a title="The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life" rel="nofollow" href="https://www.goodreads.com/review/show/3887550935?utm_medium=api&amp;utm_source=custom_widget"><img alt="The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1465761302l/28257707._SX50_.jpg" /></a>
-              </div>
-              <div class="gr_custom_rating_">
-                <span class=" staticStars notranslate" title="it was amazing"><img alt="it was amazing" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /></span>
-              </div>
-              <div class="gr_custom_title_">
-                <a rel="nofollow" href="https://www.goodreads.com/review/show/3887550935?utm_medium=api&amp;utm_source=custom_widget">The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life</a>
-              </div>
-              <div class="gr_custom_author_">
-                by <a rel="nofollow" href="https://www.goodreads.com/author/show/8529755.Mark_Manson">Mark Manson</a>
-              </div>
-              <div class="gr_custom_review_">
-                The main idea of the book is that life consists of endless issues. Hence there is no point in wishing the life of Elone Musk or someone else, since they have endless issues too. On the other hand, the level of their problems is higher th...
-              </div>
-            </div>
-            <div class="gr_custom_each_container_">
-              <div class="gr_custom_book_container_">
-                <a title="The 7 Habits of Highly Effective People: Powerful Lessons in Personal Change" rel="nofollow" href="https://www.goodreads.com/review/show/3887550657?utm_medium=api&amp;utm_source=custom_widget"><img alt="The 7 Habits of Highly Effective People: Powerful Lessons in Personal Change" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1421842784l/36072._SY75_.jpg" /></a>
-              </div>
-              <div class="gr_custom_rating_">
-                <span class=" staticStars notranslate" title="really liked it"><img alt="really liked it" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_active.png" /><img alt="" src="https://s.gr-assets.com/images/layout/gr_red_star_inactive.png" /></span>
-              </div>
-              <div class="gr_custom_title_">
-                <a rel="nofollow" href="https://www.goodreads.com/review/show/3887550657?utm_medium=api&amp;utm_source=custom_widget">The 7 Habits of Highly Effective People: Powerful Lessons in Personal Change</a>
-              </div>
-              <div class="gr_custom_author_">
-                by <a rel="nofollow" href="https://www.goodreads.com/author/show/1538.Stephen_R_Covey">Stephen R. Covey</a>
-              </div>
-            </div>
-            <br style="clear: both"/>
-            <center>
-              <a rel="nofollow" href="https://www.goodreads.com/"><img alt="goodreads.com" style="border:0" src="https://s.gr-assets.com/images/widget/widget_logo.gif" /></a>
-            </center>
-            <noscript>
-              Share <a rel="nofollow" href="https://www.goodreads.com/">book reviews</a> and ratings with Denis, and even join a <a rel="nofollow" href="https://www.goodreads.com/group">book club</a> on Goodreads.
-            </noscript>
           </div>
+          <div class="book-item">
+            <img src="books/subtle-art.jpg" alt="Cover: The Subtle Art of Not Giving a F*ck">
+            <div>
+              <div class="book-item-title"><a rel="nofollow" href="https://www.goodreads.com/review/show/3887550935" target="_blank">The Subtle Art of Not Giving a F*ck</a></div>
+              <div class="book-item-author">Mark Manson</div>
+              <div class="book-stars">★★★★★</div>
+              <div class="book-item-review">The main idea of the book is that life consists of endless issues. Hence there is no point in wishing the life of Elon Musk or someone else, since they have endless issues too. On the other hand, the level of their problems is higher.</div>
+            </div>
+          </div>
+          <div class="book-item">
+            <img src="books/7-habits.jpg" alt="Cover: The 7 Habits of Highly Effective People">
+            <div>
+              <div class="book-item-title"><a rel="nofollow" href="https://www.goodreads.com/review/show/3887550657" target="_blank">The 7 Habits of Highly Effective People</a></div>
+              <div class="book-item-author">Stephen R. Covey</div>
+              <div class="book-stars">★★★★☆</div>
+            </div>
+          </div>
+          <p class="books-footer">More books and reviews on my <a rel="nofollow" href="https://www.goodreads.com/review/list/131848577-denis-shonov?shelf=read" target="_blank">Goodreads profile</a>.</p>
         </div>
-        <script src="https://www.goodreads.com/review/custom_widget/131848577.Denis's%20bookshelf:%20read?cover_position=&cover_size=&num_books=5&order=&shelf=&sort=&widget_bg_transparent=" type="text/javascript" charset="utf-8"></script>
       </div>
     </div>
   </section>
@@ -820,6 +693,13 @@
         <h2>Contact</h2>
         <p>You can contact me by email at <a href="mailto:edtechhacker@gmail.com">edtechhacker@gmail.com</a> or via Telegram <a href="https://t.me/shontech" target="_blank">@shontech</a>.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section style="padding-top: 32px; padding-bottom: 32px; border-top: 1px solid var(--color-border-subtle);">
+    <div class="container">
+      <p style="text-align: center; color: var(--color-text-muted); font-size: 0.875rem; margin-bottom: 0;">16+</p>
     </div>
   </section>
 
